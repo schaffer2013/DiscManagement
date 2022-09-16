@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 app = Flask(__name__)
@@ -8,9 +9,13 @@ def index():
    print('Request for index page received')
    return render_template('index.html')
 
-@app.route('/disc/{id}')
-def index():
-   print(id)
+@app.route("/disc", methods=['GET'])
+def disc_noId():
+   id = 'NoDisc'
+   return render_template('disc.html', id=id)
+
+@app.route("/disc/<id>")
+def disc(id):
    return render_template('disc.html', id=id)
 
 @app.route('/favicon.ico')
